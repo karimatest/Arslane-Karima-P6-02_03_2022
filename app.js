@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
+//pour sécuriser les en-tête http de l'application express
+const helmet = require('helmet');
 
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
@@ -22,6 +24,8 @@ mongoose.connect(process.env.DB_URI,
   });
   
   app.use(express.json());
+  app.use(helmet());
+  
   app.use('/images', express.static(path.join(__dirname, 'images')));
 
   app.use('/api/sauces', sauceRoutes);
