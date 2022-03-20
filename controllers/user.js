@@ -1,7 +1,13 @@
-const bcrypt = require('bcrypt');
+//pour crypter les informations 
+const bcrypt = require('bcrypt');// chiffrage du mot de passe
+// pour créer des token introuvables et aléatoires
+// = sécuriser la connexion au compte
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+require('dotenv').config();
 
+//infrastructure nécessaire pour les routes d'authentification
+// fonction signup pour l'enregistrement de nouveaux utilisateurs
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
@@ -16,6 +22,7 @@ exports.signup = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
+// fonction login pour connecter les users existants
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
     .then(user => {

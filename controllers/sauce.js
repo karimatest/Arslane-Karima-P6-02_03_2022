@@ -66,7 +66,8 @@ exports.getOneSauce = (req, res, next) => {
     }
   );
 };
-  
+
+//Permet de récuperer toutes les sauces de la base MongoDB
 exports.getAllSauces = (req, res, next) => {
   Sauce.find().then(
     (sauces) => {
