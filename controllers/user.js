@@ -1,5 +1,6 @@
 //pour crypter les informations 
-const bcrypt = require('bcrypt');// chiffrage du mot de passe
+const bcrypt = require('bcrypt');
+// chiffrage du mot de passe
 // pour créer des token introuvables et aléatoires
 // = sécuriser la connexion au compte
 const jwt = require('jsonwebtoken');

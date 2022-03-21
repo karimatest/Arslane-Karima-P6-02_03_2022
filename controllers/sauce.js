@@ -1,14 +1,15 @@
 const Sauce = require('../models/Sauce');
 const fs = require('fs');
 
+//Créer une sauce
 exports.createSauce = (req, res, next) => {
+  if(!req.body.sauce){
+ return res.status(400).json({message:"parametre manquant"})
+  }
   const sauceObject = JSON.parse(req.body.sauce);
-  //const file = req.body.file;
-  //if (!sauceObject || !file) {
-    //return res.status(400).json({message: "fichier manquant"})
-  //}
-  delete sauceObject._id;
+  //delete sauceObject._id;
   const sauce = new Sauce({
+    // on récupère toutes les infos du body grâce à cette fonction ...spread
     ...sauceObject,
     imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   });
@@ -17,6 +18,7 @@ exports.createSauce = (req, res, next) => {
     .catch(error => res.status(400).json({ error }));
 };
 
+// Modifie une sauce
 exports.modifySauce = (req, res, next) => {
   const sauceObject = req.file ?
     {
@@ -28,6 +30,7 @@ exports.modifySauce = (req, res, next) => {
     .catch(error => res.status(400).json({ error }));
 };
 
+//supprimer une sauce
 exports.deleteSauce = (req, res, next) => {
   Sauce.findOne({ _id: req.params.id })
     .then(sauce => {
@@ -51,6 +54,7 @@ exports.deleteSauce = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
+//afficher une sauce
 exports.getOneSauce = (req, res, next) => {
   Sauce.findOne({
     _id: req.params.id
@@ -67,7 +71,7 @@ exports.getOneSauce = (req, res, next) => {
   );
 };
 
-//Permet de récuperer toutes les sauces de la base MongoDB
+//afficher toutes les sauces
 exports.getAllSauces = (req, res, next) => {
   Sauce.find().then(
     (sauces) => {
