@@ -1,5 +1,6 @@
 // IMPORTS
-const validator = require("validator"); // Importation du package 'validator'
+// Importation du package 'validator'
+const validator = require("validator"); 
 
 // VERIFICATION DE L'ADRESSE MAIL 
 module.exports = (req, res, next) => {
