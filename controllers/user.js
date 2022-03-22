@@ -1,3 +1,4 @@
+require('dotenv').config();
 //pour crypter les informations 
 const bcrypt = require('bcrypt');
 // chiffrage du mot de passe
@@ -5,7 +6,6 @@ const bcrypt = require('bcrypt');
 // = sécuriser la connexion au compte
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-require('dotenv').config();
 
 //infrastructure nécessaire pour les routes d'authentification
 // fonction signup pour l'enregistrement de nouveaux utilisateurs
