@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 // chiffrage du mot de passe
 // pour créer des token introuvables et aléatoires
 // = sécuriser la connexion au compte
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');// Importation du package 'jsonwebtoken' pour l'encodage des 'Token'
 const User = require('../models/User');
 
 //infrastructure nécessaire pour les routes d'authentification
