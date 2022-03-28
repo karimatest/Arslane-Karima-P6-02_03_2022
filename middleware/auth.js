@@ -23,6 +23,7 @@ module.exports = (req, res, next) => {
     }
   } catch (error) {
     console.log(error);
+    // renvoyer une erreur 401, problème d'authentification
     res.status(401).json({
       error: new Error('Invalid request!')
     });
